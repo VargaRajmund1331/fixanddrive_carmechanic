@@ -1,0 +1,119 @@
+🌐 IP-címzés és Interface kiosztás
+
+Telep A – Főműhely
+
+
+VLAN 10 (Staff gépek): 10.20.1.0/24
+
+VLAN 20 (POS terminálok): 10.20.2.0/24
+
+VLAN 30 (CCTV): 10.20.3.0/24
+
+ 	Router A (Router-on-a-stick)
+
+Fa0/0 → ISP felé: 200.0.0.2/30 (GW: 200.0.0.1)
+
+Fa0/1.10 → 10.20.1.1/24 (Staff)
+
+Fa0/1.20 → 10.20.2.1/24 (POS)
+
+Fa0/1.30 → 10.20.3.1/24 (CCTV)
+
+Eszközök
+
+Staff PC1: 10.20.1.11/24, GW: 10.20.1.1
+
+Staff PC2: 10.20.1.12/24
+
+POS1: 10.20.2.21/24, GW: 10.20.2.1
+
+Kamera1: 10.20.3.31/24, GW: 10.20.3.1
+
+Inventory szerver: 10.20.1.100/24
+
+
+Telep B – Raktár
+
+Hálózatok:
+
+VLAN 10 (Raktári dolgozók): 10.30.1.0/24
+
+VLAN 30 (CCTV): 10.30.3.0/24
+
+***Router B***
+
+
+
+
+Fa0/0 → WAN: 200.0.0.6/30 (GW: 200.0.0.5)
+
+Fa0/1.10 → 10.30.1.1/24
+
+Fa0/1.30 → 10.30.3.1/24
+
+Eszközök
+
+Raktár PC1: 10.30.1.11/24, GW: 10.30.1.1
+
+Raktár szerver: 10.30.1.100/24
+
+Kamera: 10.30.3.31/24
+
+
+Telep C – Iroda
+
+Hálózatok:
+
+VLAN 10 (Office Staff): 10.40.1.0/24
+
+VLAN 40 (Szerver VLAN): 10.40.4.0/24
+
+**Router C**
+
+
+
+
+Fa0/0 → WAN: 200.0.0.10/30 (GW: 200.0.0.9)
+
+Fa0/1.10 → 10.40.1.1/24
+
+Fa0/1.40 → 10.40.4.1/24
+
+Eszközök
+
+Office PC1: 10.40.1.11/24, GW: 10.40.1.1
+
+Office PC2: 10.40.1.12/24
+
+DC szerver: 10.40.4.10/24
+
+File szerver: 10.40.4.20/24
+
+
+DMZ (Központi elérés – Inventory web)
+
+Hálózat: 172.16.0.0/24
+
+DMZ szerver: 172.16.0.10/24 (Inventory Web)
+
+WAN / Internet összeköttetés
+
+Az egyszerűség kedvéért minden router kap egy /30-as publikus IP-t az ISP/Cloud felől:
+
+ISP / Cloud
+
+Router A-hoz: 200.0.0.1/30
+
+Router B-hez: 200.0.0.5/30
+
+Router C-hez: 200.0.0.9/30
+
+📑 Összefoglalva
+
+Private IP-k: minden telep saját /24 hálózatokat kap VLAN szerint.
+
+Public WAN /30: az ISP-hez való kapcsolathoz.
+
+Gatewayk: mindig a router subinterface IP-je.
+
+DMZ: külön alhálózat a publikus Inventory szerverhez.
