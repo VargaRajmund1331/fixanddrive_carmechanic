@@ -40,10 +40,8 @@ VLAN 10 (Raktári dolgozók): 10.30.1.0/24
 
 VLAN 30 (CCTV): 10.30.3.0/24
 
-***Router B***
 
-
-
+  ***Router B***
 
 Fa0/0 → WAN: 200.0.0.6/30 (GW: 200.0.0.5)
 
@@ -68,10 +66,8 @@ VLAN 10 (Office Staff): 10.40.1.0/24
 
 VLAN 40 (Szerver VLAN): 10.40.4.0/24
 
-**Router C**
 
-
-
+  **Router C**
 
 Fa0/0 → WAN: 200.0.0.10/30 (GW: 200.0.0.9)
 
@@ -108,12 +104,10 @@ Router B-hez: 200.0.0.5/30
 
 Router C-hez: 200.0.0.9/30
 
+
 📑 Összefoglalva
 
 Private IP-k: minden telep saját /24 hálózatokat kap VLAN szerint.
-
 Public WAN /30: az ISP-hez való kapcsolathoz.
-
 Gatewayk: mindig a router subinterface IP-je.
-
 DMZ: külön alhálózat a publikus Inventory szerverhez.
